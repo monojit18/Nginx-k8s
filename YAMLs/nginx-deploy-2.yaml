@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-deploy-2
+  name: nginx-deploy-2
+  namespace: k8s-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-deploy-2
+  strategy: {}
+  template:
+    metadata:      
+      labels:
+        app: nginx-deploy-2
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 150m
+            memory: 150Mi
+          limits:
+            cpu: 300m
+            memory: 300Mi
